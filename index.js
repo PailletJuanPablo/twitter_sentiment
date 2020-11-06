@@ -25,10 +25,17 @@ const getData = async (topicToSearch) => {
 
   const mappedResults = mapTweetsData(data);
   const sentimentAnalysis = await getSentiments(mappedResults);
-  generatePdf(sentimentAnalysis);
+  generatePdf(sentimentAnalysis, topicToSearch);
   console.log('File generated!')
 
 }
 
 // specify query here
-getData('#stopthecount')
+//getData()
+
+const queryToSearch = (process.argv.slice(2))[0];
+if(queryToSearch) {
+  getData(queryToSearch)
+}
+
+

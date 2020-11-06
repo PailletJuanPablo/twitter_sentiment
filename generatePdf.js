@@ -2,7 +2,7 @@ const ejs = require('ejs');
 
 var pdf = require('html-pdf');
 
-module.exports = (results) => {
+module.exports = (results, topic) => {
 
   let normal = 0;
   let possitive = 0;
@@ -24,13 +24,13 @@ module.exports = (results) => {
     total = Number(total) + Number(sentiment)
   }
   // Generate object structure to show on ejs template
-  const structure = {
+  const resume = {
     normal: normal * 100 / results.length,
     possitive: possitive * 100 / results.length,
     negative: negative * 100 / results.length,
     general: total
   }
-  ejs.renderFile('template.ejs', { tweets: results, resume: structure }, function(err, str){
+  ejs.renderFile('template.ejs', { tweets: results, resume, topic }, function(err, str){
       pdf.create(str).toFile('generated.pdf', function(err, res) {
           if (err) return console.log(err);
           console.log(res); 

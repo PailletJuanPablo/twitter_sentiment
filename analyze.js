@@ -1,7 +1,6 @@
 const path = require('path')
 // key.json needs to be the google service acoount
 const fileUrl = path.resolve(process.env.GOOGLE_CLIENT_SERVICE_ACCOUNT_PATH)
-const fs = require('fs');
 
 async function analyzeEntitiesOfText(text) {
     // [START language_entities_text]
@@ -36,7 +35,7 @@ const getSentiments = async (mappedResults) => {
             res.sentiments = sentiments;
             sentimentResults.push(res)
         } catch (error) {
-            console.log(error)
+            console.log('Error on sentiment analysis')
         }
    
     }

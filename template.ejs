@@ -1,15 +1,27 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Resultados</title>
 </head>
+
 <body>
-    <h1 style="text-align: center;"> Resultados de tweet de trumpete </h1>
+    <h1 style="text-align: center;"> Resultados de análisis de <%= topic %> </h1>
     <br>
-    <div style="text-align: center; color: red">
-        <h2> Sentimiento general: MALO (-0.6) </h2>
+    <div style="text-align: center">
+
+        <% if (resume.general < 0) { %>
+        <h3 style="color: red">Sentimiento general: Negativo. Score de <%= resume.general %> </h3 >
+        <% } %>
+        <% if (resume.general > 0) { %>
+        <h3 style="color: green">Sentimiento general: Positivo. Score de <%= resume.general %></h3 >
+        <% } %>
+        <% if (resume.general == 0.00) { %>
+        <h3 style="color: #d0d010">Sentimiento general: Neutro. Score de <%= resume.general %> </h3 >
+        <% } %>
+
     </div>
     <div style="width: 70%; margin: auto">
         <% tweets.forEach(function(tweet){ %>
@@ -37,4 +49,5 @@
         <% }); %>
     </div>
 </body>
+
 </html>
