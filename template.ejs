@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resultados</title>
+</head>
+<body>
+    <h1 style="text-align: center;"> Resultados de tweet de trumpete </h1>
+    <br>
+    <div style="text-align: center; color: red">
+        <h2> Sentimiento general: MALO (-0.6) </h2>
+    </div>
+    <div style="width: 70%; margin: auto">
+        <% tweets.forEach(function(tweet){ %>
+        <div style="display: flex; width: 100%;">
+            <div style="width: 30%;display: flex;justify-content: center;align-items: center;align-content: center;">
+                <img style="max-width: 100%;width: 100px;border-radius: 50%;" src="<%= tweet.photo %>">
+            </div>
+            <div style="width: 70%;">
+                <h4> @<%= tweet.user %> </h4>
+                <h5> Nombre: <%= tweet.name %> </h5>
+                <p> <%= tweet.text %> </p>
+                <% if (tweet.sentiments.score < 0) { %>
+                <h3 style="color: red">Negativo</h3 style="color: red">
+                <% } %>
+                <% if (tweet.sentiments.score > 0) { %>
+                <h3 style="color: green">Positivo</h3 style="color: red">
+                <% } %>
+                <% if (tweet.sentiments.score == 0.00) { %>
+                <h3 style="color: #d0d010">Neutro</h3 style="color: red">
+                <% } %>
+                <p> Sentimiento: <%= tweet.sentiments.score %> </p>
+            </div>
+        </div>
+        <hr>
+        <% }); %>
+    </div>
+</body>
+</html>
